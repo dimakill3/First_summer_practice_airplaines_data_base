@@ -310,6 +310,7 @@ namespace Project1 {
 			this->MainMenuStrip = this->menuStrip1;
 			this->Name = L"Game";
 			this->Text = L"Game";
+			this->FormClosed += gcnew System::Windows::Forms::FormClosedEventHandler(this, &Game::Game_FormClosed);
 			this->Load += gcnew System::EventHandler(this, &Game::Game_Load);
 			this->menuStrip1->ResumeLayout(false);
 			this->menuStrip1->PerformLayout();
@@ -652,11 +653,15 @@ private: System::Void button2_Click(System::Object^  sender, System::EventArgs^ 
 
 }
 private: System::Void справкаToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
-			 MessageBox::Show("\t\t\t\t\t\t ЙОГА"+"\n"+"\t\t\t\t\tДревняя индусская игра"+"\n"+
-				 "\t\tЦель игры - побить максимум фишек."+"\n"+
-				 "\t\tХодить можно только перешагивая через одну фишку. По Диагонали ходить нельзя! Фишка, через которую перешагнули,"+
+			 MessageBox::Show("\t\t\t ЙОГА"+"\n"+"\t\tДревняя индусская игра"+"\n"+
+				 "Цель игры - побить максимум фишек."+"\n"+
+				 "Ходить можно только перешагивая через одну фишку. По Диагонали ходить нельзя! Фишка, через которую перешагнули,"+
 				 "считается битой и удаляется с поля. Перешагивать можно только в пустую ячейку. Игра считается законценой, если ходов больше нет."+
 				 "Чем меньше фишек осталось на поле, тем лучше результат.", "Info", MessageBoxButtons::OK);
+}
+private: System::Void Game_FormClosed(System::Object^ sender, System::Windows::Forms::FormClosedEventArgs^ e) {
+	extern int game_on;
+	game_on = 0;
 }
 };
 }
